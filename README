@@ -1,0 +1,24 @@
+# Fresh Market 🛒
+
+An E-commerce web application built with Angular.
+
+## 🚀 Features
+- User Authentication (Login / Register)
+- Route Guards Protection
+- Product Listing & Details
+- Cart & Wishlist
+- Online & Cash Payment Flow
+- Responsive Design
+
+## 🛠 Tech Stack
+- Angular
+- TypeScript
+- Tailwind CSS
+- RxJS
+- ngx-toastr
+- ngx-spinner
+
+## 📦 Installation
+```bash
+npm install
+ng serve
