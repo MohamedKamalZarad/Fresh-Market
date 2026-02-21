@@ -1,0 +1,95 @@
+<section>
+    <div class="md:max-w-6xl  sm:max-w-[80%]  max-w-96 mx-auto mt-14">
+        <h2 class="text-3xl text-[#212529] mb-9">Wish List <i class="ms-3  text-[#e56874] fas fa-heart"></i></h2>
+        <div class="row grid grid-cols-12 mb-5">
+
+
+            @if(!isloading) {
+            @for (item of userWishList; track item._id) {
+
+            <div
+                class=" p-6 w-full md:col-span-3 sm:col-span-6 col-span-12 cursor-pointer group group/card  transition-all duration-300 overflow-hidden  relative  shadow-sm shadow-gray-300  bg-white ">
+
+<div (click)="navigate(item._id)"
+    class="w-full  mb-5 group-hover:border-[#0aad0a] transition-all ease-out duration-400 border-transparent border-4 hover:border-4 rounded-md  p-4 ">
+    <figure  class="  mb-3 relative border-b border-b-[#c7c8c9]">
+  <a class="">
+            <img class="w-full  rounded-lg mb-6 relative" [src]="item.imageCover" alt="wishlistItem image" />
+
+        </a>  
+    </figure>
+    <div>
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold  tracking-tight">
+            {{item.category.name}}
+        </h5>
+
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold line-clamp-1 tracking-tight">
+            {{item.title.split(" ",2).join(" ")}}
+        </h5>
+
+        <div class="flex justify-between items-center">
+            <h5 class="text-md space-x-1 flex text-gray-900 font-semibold tracking-tight">
+                <span class="">EGP </span>
+                <span>{{ item.price }}</span>
+            </h5>
+
+            <h5 class="flex space-x-1 items-center"><i class="fas fa-star text-[#ffff00]"></i>
+                <span>{{item.ratingsAverage}}</span>
+            </h5>
+        </div>
+    </div>
+</div>
+<div class="btn-container  justify-between  py-3 grid grid-cols-12 gap-3 transition-all duration-500  ">
+    <button (click)="addToCart(item._id)"
+        class=" w-full bg-main cursor-pointer hover:bg-[#11bd11] mx-auto text-white col-span-9 px-4 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%]   transition-all duration-500 ">
+        Add to cart
+    </button>
+    <button (click)="deleteAnItemFromWishlist(item._id)"
+        class="group  bg-[#dc3545] w-full mx-auto cursor-pointer hover:bg-[#bb2d3b] text-white col-span-3 px-3 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%] transition-all duration-500 ">
+        <i class="fa-solid fa-lg fa-trash "></i>
+    </button>
+</div>
+
+
+
+
+            </div>} }
+            @if(isloading){
+            @for(skeleton of [].constructor(pageSize);track $index){
+            <div 
+            
+                class="col-span-3 p-6 w-full cursor-pointer group group/card  transition-all duration-300 overflow-hidden  relative  shadow-sm shadow-gray-300  bg-white ">
+        <div
+                        class="p-6 w-full cursor-pointer group transition-all duration-300 overflow-hidden relative shadow-sm shadow-gray-300 bg-white animate-pulse">
+                        <figure class="mb-3 relative border-b border-gray-300">
+                            <div class="w-full h-48 bg-[#6c757d] rounded-lg mb-6"></div>
+                        </figure>
+
+                        <div class="space-y-3">
+                            <div class="h-4 bg-[#c2c3c4] rounded w-1/3"></div>
+                            <div class="h-5 bg-[#c2c3c4] rounded w-2/3"></div>
+                            <div class="h-3 bg-[#c2c3c4] rounded w-1/4 line-through"></div>
+                            <div class="flex justify-between items-center mt-2">
+                                <div class="h-5 bg-[#c2c3c4] rounded w-1/4"></div>
+                                <div class="flex space-x-2 items-center">
+                                    <div class="h-5 w-5 bg-[#c2c3c4] rounded-full"></div>
+                                    <div class="h-4 bg-[#c2c3c4] rounded w-8"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-container justify-between py-3 grid grid-cols-12 gap-3 mt-4">
+                            <div class="h-10 bg-[#84d684] rounded col-span-9"></div>
+                            <div class="h-10 bg-[#84d684] rounded col-span-3"></div>
+                        </div>
+                    </div>
+
+            </div>}}
+
+
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,10 @@
+
+    <div class="bg-main-light fixed z-50 top-0 left-0 w-full">
+  @if (flag) {<app-top-bar></app-top-bar>
+    <app-user-bar></app-user-bar>}  
+    <navbar [flag]="flag" [isLogged]="true"></navbar>
+</div>
+<div  class="pt-50">
+
+<router-outlet></router-outlet>
+</div>

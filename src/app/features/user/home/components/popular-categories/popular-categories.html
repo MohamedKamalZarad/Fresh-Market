@@ -1,0 +1,17 @@
+<div class="w mx-auto">
+  <h2 class="text-3xl text-[#212529] font-bold mb-5"
+>Shop Popular Categories</h2>
+  <owl-carousel-o [options]="customOptions">
+
+    @for (category of categriesList; track category._id) {
+      <ng-template carouselSlide [id]="category._id">
+       <div class="px-3">
+         <img class="w-[200px]  h-[200px]" [src]="category.image" [alt]="category.name" [title]="category.slug">
+        <p>{{category.name}}</p>
+       </div>
+    </ng-template>
+    }
+
+  </owl-carousel-o>
+
+</div>

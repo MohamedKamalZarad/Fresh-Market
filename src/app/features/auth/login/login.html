@@ -1,0 +1,49 @@
+<section class="my-9">
+    <div class="container md:w-full   md:px-1  mx-auto flex justify-center items-center">
+        <div class="wrapper flex-col w-[75%] md:flex md:flex-row justify-center items-center space-x-1.5 rounded-2xl py-2  px-10 bg-main-light">
+            <div class="left-part py-7 w-full  md:w-1/2 ">
+                <form class="max-w-sm  md:w-full mx-auto" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <h2 class="text-3xl font-semibold text-[#212529] mb-5">LogIn Now <i
+                            class="fa-solid fa-right-to-bracket"></i></h2>
+                    <div class="mb-5">
+                        <app-input [type]="'email'" [id]="'email'" [control]="loginForm.get('email') ">
+                            Email:</app-input>
+                    </div>
+
+                    <div>
+                        <app-input [type]="'password'" [id]="'password'" [control]="loginForm.get('password') ">
+                            Password:</app-input>
+
+                    </div>
+
+                    <div class="flex items-start mb-5">
+                        <div class="flex items-center h-5">
+                            <a routerLink="/forget-password" class="text-main cursor-pointer underline ">Forget password</a>
+                        </div>
+
+                    </div>
+                    <div class="mb-7" routerLink="/home">
+
+                        <app-button  [isLoading]="isLoading" [isINValid]="loginForm.invalid" [isValid]="loginForm.valid">Login</app-button>
+                    </div>
+                    <div class="flex items-start mb-7 justify-center ">
+                        <div class="flex items-center h-5">
+                            <p >Don't Have an account?<a routerLink="/register"
+                            class="text-main ms-2 cursor-pointer underline">Register Now</a></p>
+
+                        </div>
+
+                    </div>
+                    @if (inValidReq) {
+                    <p class="text-red-500 w-75/100 border border-red-300 mx-auto p-5 rounded-lg text-center bg-red-200">Invalid email or password</p>}
+                </form>
+
+            </div>
+            <div class="right-part w-full md:w-1/2">
+                <figure>
+                    <img src="assets/auth/2.gif" alt="" srcset="">
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>

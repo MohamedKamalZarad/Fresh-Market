@@ -1,0 +1,10 @@
+<div class="relative" >
+    
+@if (flag) {
+<app-layout-first [userWishListIds]="userWishListIds" [product]="product" ></app-layout-first>
+}
+@else {
+<app-layout-second [userWishListIds]="userWishListIds" [product]="product"></app-layout-second>
+}
+
+</div>

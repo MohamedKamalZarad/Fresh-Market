@@ -1,0 +1,46 @@
+<div class="md:max-w-6xl  sm:max-w-[80%]  mx-auto my-6 p-6 bg-[#f0f3f2] rounded-lg">
+
+       
+    @for (orderItem of orderData.cartItems; track orderItem._id ) {
+
+<!-- orderProduct.product.imageCover
+orderItem.id
+orderItem.paymentMethodType
+orderItem.shippingAddress.city
+ orderItem.shippingAddress
+orderItem.user.phone
+orderItem.isDelivered
+orderItem.isPaid
+orderItem.createdAt
+orderItem.paidAt
+orderItem.updatedAt
+orderItem.shippingPrice
+orderItem.taxPrice
+orderItem.totalOrderPrice -->
+<app-order-item
+[orderId]="orderData.id"
+[imageCover]="orderItem.product.imageCover"
+[paymentMethodType]="orderData.paymentMethodType"
+[city]="orderData.shippingAddress.city"
+[shippingAddress]="orderData.shippingAddress.details"
+[userPhone]="orderData.user.phone"
+[isDelivered]="orderData.isDelivered"
+[isPaid]="orderData.isPaid"
+[createdAt]="orderData.createdAt"
+[paidAt]="orderData.paidAt"
+[updatedAt]="orderData.updatedAt"
+[shippingPrice]="orderData.shippingPrice"
+[taxPrice]="orderData.taxPrice"
+[totalOrderPrice]="orderData.totalOrderPrice"
+>
+   
+</app-order-item>
+
+<div class="flex justify-center mt-5">
+               <button (click)="navigateToProductDetails(orderItem.product._id)"
+                type="button" 
+                   class=" text-white justify-center flex   items-center bg-main box-border border border-transparent hover:bg-[#11bd11]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2  w-full ">
+                   Explore Your Order Products  <i class="fa-regular fa-eye"></i></button>
+           </div>
+    } 
+</div>

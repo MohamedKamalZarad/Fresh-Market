@@ -1,0 +1,91 @@
+@let filteredProducts = (productList | searchPipe:search);
+<section  
+[class.opacity-0]="search && filteredProducts.length !== 0"
+
+class="absolute
+   w-1/2 left-[50%]
+    scroll-auto
+     -translate-x-[15%]
+      mt-2 bg-[#f0f3f2]
+       border-3
+        border-gray-300 
+        rounded-md
+ transition-all duration-700 ease-in-out
+        ">
+    <p class="px-3 py-2.5">nothing to show......</p>
+</section>
+
+
+
+
+
+<section [class.opacity-0]="!search ||filteredProducts.length === 0" class="h-[450px]
+     overflow-y-auto
+      absolute
+      w-1/2
+       left-[50%]
+        scroll-auto
+         -translate-x-[15%]
+          mt-2
+           bg-[#f0f3f2] 
+           border-3
+            border-gray-300 
+            rounded-md
+ transition-all duration-700 ease-in-out
+            
+            ">
+    @for (product of productList|searchPipe:search; track product.id) {
+    <div (click)=" navigate(product._id)"
+        class=" cursor-pointer grid   grid-cols-12 p-3 relative transition-all duration-400 border-transparent border-4 hover:border-[#0aad0a] hover:rounded-md">
+
+        <div class="col-span-3 ">
+            <figure class=" group/gallary mb-3 relative border-b-[#c7c8c9]">
+                <a class="">
+
+                    <img class="w-full group-hover/gallary: rounded-lg mb-6 relative" src={{product.imageCover}}
+                        alt="product image" />
+                </a>
+            </figure>
+
+        </div>
+
+        <div class="col-span-9 flex flex-col justify-between p-4">
+            <div>
+                <h5 class="text-md mb-5 text-gray-900 font-semibold  tracking-tight">
+                    {{product.category.name}}
+                </h5>
+                <h5 class="text-md mb-5 text-gray-900 font-medium tracking-tight">
+                    {{product.description}}
+                </h5>
+                <h5 class="text-md mb-5 text-gray-900 font-medium  tracking-tight">
+                    <span class="font-semibold"> reviews :</span> {{product.ratingsAverage}} <span> <i
+                            class="fa-solid fa-eye "></i></span>
+                </h5>
+                <h5 class="text-md mb-5 text-gray-900 font-medium  tracking-tight">
+                    <span class="font-semibold">Sold : </span>{{product.sold}}<span><i
+                            class="fa-solid fa-bag-shopping "></i></span>
+                </h5>
+                <h5 class="text-md mb-5 text-gray-900 font-semibold  tracking-tight">
+                    {{product.title}}
+                </h5>
+            </div>
+            <div class="flex items-end w-full ">
+                <div class="w-full">
+
+                    <div class="flex justify-between items-center w-full">
+                        <h5 class="text-md  space-x-1 flex  font-semibold tracking-tight">
+                            <span class="me-2">EGP </span>
+                            <span class="">{{product.price}}</span>
+                        </h5>
+                        <p>
+                            <i class="fas fa-star text-[#ffff00]"></i>
+                            <span>{{product.ratingsAverage}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+</section>

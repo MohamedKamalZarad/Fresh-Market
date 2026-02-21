@@ -1,0 +1,94 @@
+<section class=" mt-16 mb-7 md:max-w-6xl sm:max-w-[80%] max-w-96 mx-auto">
+    <div class="md:flex justify-between items-center mb-7">
+        <div class="breadcrumbes-side ">
+
+            <p class="text-[#91989e] font-semibold"><i class="fas fa-house me-2"></i>Home \ <i
+                    class="fas fa-search me-2 "></i>search results ..</p>
+        </div>
+        <div class="filter-side ">
+            <div class="flex items-center md:justify-end ">
+                <div class=" flex justify-center">
+            
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative  w-full">
+
+                        <input type="text" id="simple-search" #inputOfSearch (keyup)=" searchForProduct()"
+                            class="pe-9 py-3.5 border border-[#0aad0a]! rounded-md ps-auto  text-sm  block w-full"
+                            placeholder="Filter..." required />
+                    </div>
+                </div>
+
+                <div class="md:flex hidden">
+                    <button (click)="gridChange() ;toggleDisabled()" class="text-[#212529] cursor-pointer 
+                          disabled:text-[#696d6f] 
+                              disabled:cursor-default!" [disabled]="isDisabledBtn">
+
+                        <i class="fa-solid fa-bars fa-2x "></i>
+                    </button>
+                    <button (click)="  gridChange() ;toggleDisabled()" class="text-[#212529] cursor-pointer 
+                          disabled:text-[#696d6f] 
+                                 disabled:cursor-default!" [disabled]="!isDisabledBtn">
+
+                        <i class="fa-solid fa-table-cells fa-2x "></i></button>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+       <div class="row grid grid-cols-12 mb-5">
+            @if(!isloading) {
+            @for (product of productList| searchPipe : search | offer : 20 ; track product._id) {
+
+            <div [class.md:col-span-3!]="flag" [class.col-span-12]="flag"  [class.md:col-span-12]="!flag"
+                class=" p-6 w-full sm:col-span-6  cursor-pointer group group/card  transition-all duration-300 overflow-hidden  relative  shadow-sm shadow-gray-300  bg-transparent ">
+                <app-product [userWishListIds]="userWishListIds" [flag]="flag" [product]="product"></app-product>
+                <p class="absolute top-0 translate-y-2 -translate-x-2 right-0 z-10">
+                    <app-offer>{{'-'+product.offerNumber+'%'}}</app-offer>
+                </p>
+            </div>} }
+            @if(isloading){
+            @for(skeleton of [].constructor(productList.length);track $index){
+            <div [class.md:col-span-3!]="flag" [class.col-span-12]="flag"  [class.col-span-12]="!flag"
+                class="col-span-3 sm:col-span-6! p-6 w-full cursor-pointer group group/card  transition-all duration-300 overflow-hidden  relative  shadow-sm shadow-gray-300  bg-white ">
+                 <div
+                        class="p-6 w-full cursor-pointer group transition-all duration-300 overflow-hidden relative shadow-sm shadow-gray-300 bg-white animate-pulse">
+                        <figure class="mb-3 relative border-b border-gray-300">
+                            <div class="w-full h-48 bg-[#6c757d] rounded-lg mb-6"></div>
+                        </figure>
+
+                        <div class="space-y-3">
+                            <div class="h-4 bg-[#c2c3c4] rounded w-1/3"></div>
+                            <div class="h-5 bg-[#c2c3c4] rounded w-2/3"></div>
+                            <div class="h-3 bg-[#c2c3c4] rounded w-1/4 line-through"></div>
+                            <div class="flex justify-between items-center mt-2">
+                                <div class="h-5 bg-[#c2c3c4] rounded w-1/4"></div>
+                                <div class="flex space-x-2 items-center">
+                                    <div class="h-5 w-5 bg-[#c2c3c4] rounded-full"></div>
+                                    <div class="h-4 bg-[#c2c3c4] rounded w-8"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="btn-container justify-between py-3 grid grid-cols-12 gap-3 mt-4">
+                            <div class="h-10 bg-[#84d684] rounded col-span-9"></div>
+                            <div class="h-10 bg-[#84d684] rounded col-span-3"></div>
+                        </div>
+                    </div>
+
+            </div>}}
+
+
+
+        </div>
+        @if (!isloading&&productList.length === 0) {
+        <div class="flex">
+              <p class="p-5 text-[#58151c] border-[#f1bac0] border rounded-lg  bg-[#f8d7da]">No products with that name <br> sorry</p>  
+        </div>}
+
+
+</section>

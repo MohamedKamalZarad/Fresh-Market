@@ -1,0 +1,51 @@
+<section class="md:w-1/2">
+    <form [formGroup]="updateUserInfoForm" (ngSubmit)="updateInfo()" >
+        <div class="grid grid-cols-12 mb-3  text-xl text-[#212529]">
+            <label for="first_name" class=" flex col-span-2 justify-between font-bold ">Name </label>
+                <p class="col-span-1 mx-auto">:</p>
+            <p class="col-span-9 flex items-center">
+                <input  formControlName="name" type="text" id="first_name"
+            
+                    class=" rounded-lg  disabled:bg-[#e9ecef] border-transparent border-default-medium  text-sm border focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-[#212529]"
+                    required>
+                @if (!isEditable) {
+                <i class="fa-solid text-[#6c757d] ms-2 fa-lock ng-star-inserted"></i>}
+                @else
+                { <i class="fa-solid text-main ms-2 fa-lock-open ng-star-inserted"></i>}
+            </p>
+        </div>
+        <div class="grid grid-cols-12 mb-3  text-xl text-[#212529]">
+            <label for="first_name" class=" flex col-span-2 justify-between font-bold ">Email </label>
+                <p class="col-span-1 mx-auto">:</p>
+            <p class="col-span-9 flex items-center">
+                <input  formControlName="email" type="text" id="first_name"
+           
+                    class=" rounded-lg disabled:bg-[#e9ecef] border-transparent border-default-medium  text-sm border focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-[#212529]"
+                    required>
+                @if (!isEditable) {
+                <i class="fa-solid text-[#6c757d] ms-2 fa-lock ng-star-inserted"></i>}
+                @else
+                { <i class="fa-solid text-main ms-2 fa-lock-open ng-star-inserted"></i>}
+            </p>
+        </div>
+        <div class="grid grid-cols-12 mb-3  text-xl text-[#212529]">
+            <label for="first_name" class=" flex col-span-2 justify-between font-bold ">Phone </label>
+            <p class="col-span-1 mx-auto">:</p>
+            <p class="col-span-9 flex items-center">
+                <input  formControlName="phone" type="text" id="first_name"
+             
+                    class=" rounded-lg disabled:bg-[#e9ecef] border-transparent border-default-medium  text-sm border focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-[#212529]"
+                    required>
+                @if (!isEditable) {
+                <i class="fa-solid text-[#6c757d] ms-2 fa-lock ng-star-inserted"></i>}
+                @else
+                { <i class="fa-solid text-main ms-2 fa-lock-open ng-star-inserted"></i>}
+            </p>
+        </div>
+        <button type="submit" [class.bg-main]="!isEditable"
+            [class.hover:bg-[#11bd11]!]="!isEditable" [class.bg-[#6c757d]]="isEditable"
+            [class.hover:bg-[#565e64]]="isEditable"
+            class="text-white justify-center bg-main  flex px-5 items-center  box-border border border-transparent  transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2">
+            {{ (isEditable) ? "Update":"Edit" }}</button>
+    </form>
+</section>

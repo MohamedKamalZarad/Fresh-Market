@@ -1,0 +1,59 @@
+<div class="mb-2 ">
+    <label [for]="inputId" class=" flex justify-between text-md text-black  mb-1 font-bold ">
+        <span class="me-auto text-xl font-bold">{{lablel}}</span>
+        <div class="flex justify-end ">
+            @if(control.touched&&control.valid){
+
+
+            <i class="fa-solid my-auto text-xs text-green-600 fa-check"></i>
+
+            }
+            @if(control.getError("required")&&control.touched){
+            <p class="text-[#df4957] font-bold">
+                Required
+
+            </p>
+            }
+            @if(control.getError("minlength")&&control.touched){
+            <p class="text-[#df4957] font-bold ">
+                Min lenght must be 3
+
+            </p>
+
+            }
+            @if(control.getError("maxlength")&&(control.touched)){
+        
+            @if (type==='text-area') {
+               <p class="text-[#df4957] font-bold ">
+                Max lenght must be 50
+
+            </p>
+            }
+            @else
+            {
+                     <p class="text-[#df4957] font-bold ">
+                Max lenght must be 20
+
+            </p>
+            }
+            }
+            @if (control.touched&&control.getError('pattern')) {
+            <p class="text-[#df4957]  font-bold ">
+                Invalid phone format<br>
+           
+
+            </p>
+            }
+        </div>
+    </label>
+    @if(type==='text'||type==='tel')
+     {
+    <input 
+     [formControl]="control" [type]="type" [id]="inputId" class="disabled:bg-[#e9ecef] bg-white border border-none  text-sm rounded-lg 
+            block w-full p-2.5" placeholder="ex. office" required   />}
+     @else {      
+          <textarea [id]="inputId" rows="4" [formControl]="control"
+                    class="rounded-lg mb-5 bg-neutral-secondary-medium border-transparent text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
+                    placeholder="Write your address here..."></textarea> 
+                }       
+</div>

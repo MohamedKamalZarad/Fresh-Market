@@ -1,1 +1,189 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default' as owl-theme;
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+
+@theme{
+ /* 🟢 Brand */
+  --color-brand: #0aad0a;
+  --color-brand-hover: #11bd11;
+  --color-brand-light: #84d684;
+  --color-brand-success: #36ae0a;
+  --color-brand-outline: #198754;
+
+  /* 🔴 Danger */
+  --color-danger: #dc3545;
+  --color-danger-dark: #dd3545;
+  --color-danger-light: #f8d7da;
+  --color-danger-border: #f1aeb5;
+  --color-danger-text: #58151c;
+
+  /* 🟡 Warning */
+  --color-warning: #ffc908;
+  --color-warning-star: #ffff00;
+
+  /* ⚫ Neutral */
+  --color-neutral-900: #212529;
+  --color-neutral-800: #342829;
+  --color-neutral-700: #55595c;
+  --color-neutral-600: #6c757d;
+  --color-neutral-500: #91989e;
+  --color-neutral-400: #c7c8c9;
+  --color-neutral-300: #dee2e6;
+  --color-neutral-200: #f0f3f2;
+  --color-neutral-100: #ffffff;
+
+}
+
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
+}
+
+body {
+  font-family: var(--font-family) !important;
+  
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+ 
+
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+ background: #f0f0f0; 
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  /* 🌟 ظل داخلي خفيف */
+  box-shadow:
+     inset 0 0 8px rgba(0, 0, 0, 0.25),   /* ظل داخلي أغمق بسيط */
+    inset 0 0 3px rgba(255, 255, 255, 0.8); /* لمعة خفيفة من فوق */
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 8px;
+}
+::selection {
+    background: var(--main-color);
+    color: var(--light-color);
+}
+
+.nav-link {
+  transition: unset !important;
+}
+.active-link {
+  background-color: var(--main-color) !important;
+  color: var(--light-color) !important;
+  border-radius: 5px;
+}
+
+.rating-color {
+  color: var(--rating-color);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+// a,
+// a:hover {
+//   color: black;
+//   text-decoration: none;
+// }
+
+.product {
+  border-radius: 5px;
+  border: solid 1px var(--main-color);
+  transition: box-shadow 0.5s;
+  overflow: hidden;
+}
+
+.product:hover {
+  box-shadow: 0 0 10px #11bd1168;
+}
+
+.font-sm {
+  font-size: 12px;
+}
+.text-main {
+  color: var(--main-color);
+}
+.text-light {
+  color: var(--light-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
+}
+.btn-main {
+  background-color: var(--main-color);
+  padding: 7px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.btn-main:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+.btn-main:disabled:hover {
+  background-color: #ccc;
+}
+.btn-main:hover {
+  background-color: #11bd11;
+}
+.cart {
+  transform: scale(0);
+  opacity: 0;
+
+  animation: cartPop 0.6s ease forwards;
+}
+
+
+@keyframes cartPop {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.1) rotate(8deg);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(1.05) rotate(-8deg);
+  }
+
+  85% {
+    transform: scale(1.02) rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+

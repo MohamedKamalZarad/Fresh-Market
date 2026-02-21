@@ -1,0 +1,91 @@
+<div class="section">
+    <div class="text-end mb-5">
+        <button type="button"
+            (click)="isShown=!isShown; choice='add';addressForm.reset();addressForm.get('name')?.enable()"
+            class="text-white bg-main box-border py-2.5 border border-transparent hover:bg-[#11bd11]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base  px-6  ">Add
+            New Address</button>
+    </div>
+    <div class="mb-5">
+        <h2 type="button" class="text-[#212529] text-xl  font-bold ">
+            Addresses: {{addressLength}}</h2>
+    </div>
+
+    <div class="grid grid-cols-12 gap-y-3">
+        @for (addressItem of addressList; track addressItem._id) {
+        <div class="col-span-12 bg-[#f8f9fa] rounded-lg p-7">
+            <app-address-card [addressItem]="addressItem"></app-address-card>
+            <div class="flex space-x-2.5">
+                <button type="button" (click)="isShown=!isShown;choice==='update';sendAddress(addressItem)"
+                    class="text-white justify-center flex  items-center bg-main box-border border border-transparent hover:bg-[#11bd11]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2 px-3">
+                    Edit</button>
+                <button type="button" (click)="deleteAddress(addressItem._id)"
+                    class="text-white justify-center flex  items-center  bg-[#dc3545] hover:bg-[#bb2d3b] box-border border border-transparent  transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2 px-3">
+                    <i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@if(isShown)
+{
+<div (click)="isShown=!isShown ;addressForm.reset() "
+    class="modal fixed top-0 left-0 h-screen right-0 bg-[rgba(0,0,0,0.5)] rgba() z-30">
+    <div (click)="stopProg($event)"
+        class="w-[75%] rounded-lg p-10 bg-[#f0f3f2] mt-24  mx-auto flex items-center justify-between ">
+        <div class=" w-full ">
+            <div class=" mb-5 font-bold text-xl text-[#767877]">
+                <h4 (click)="isShown=!isShown;addressForm.reset()" class="text-end mb-2"><button
+                        class="btn cursor-pointer"> X</button>
+                </h4>
+                <h2 class="text-main text-3xl font-bold">New Address:</h2>
+            </div>
+            <form [formGroup]="addressForm" (ngSubmit)="chooseFunc()">
+                <div class="mb-2 ">
+                    <app-input-diff-ui [control]="addressForm.get('name')" [lablel]="'Name'" [inputId]="'name'"
+                        [type]="'text'">
+                    </app-input-diff-ui>
+                </div>
+                <div class="mb-2 ">
+                    <app-input-diff-ui [control]="addressForm.get('description')" [lablel]="'Description'"
+                        [inputId]="'description'" [type]="'text'">
+
+                    </app-input-diff-ui>
+                </div>
+                <div class="mb-2 ">
+                    <app-input-diff-ui [control]="addressForm.get('city')" [lablel]="'City'" [inputId]="'city'"
+                        [type]="'text'">
+
+                    </app-input-diff-ui>
+                </div>
+                <div class="mb-4 ">
+                    <app-input-diff-ui [control]="addressForm.get('phone')" [lablel]="'Phone'" [inputId]="'phone'"
+                        [type]="'tel'">
+
+                    </app-input-diff-ui>
+                </div>
+                @if (choice==='add') {
+                <div class="btn-container flex justify-end mb-2">
+                    <app-button (click)="choice='add'" [isValid]="addressForm.valid"
+                        [isINValid]="addressForm.invalid">Add Address</app-button>
+                </div> }
+                @else {
+                <div class="btn-container flex justify-end mb-2">
+                    <div class="w-full sm:w-auto">
+                        <button [disabled]="addressForm.invalid" type="submit"
+                            [class.hover:bg-[#ffca2c]]="addressForm.valid" class=" disabled:opacity-50
+                        relative bg-[#ffc107]  cursor-pointer overflow-hidden text-black block mx-auto 
+                          font-bold rounded-sm text-lg transition-all duration-500 
+                         w-full sm:w-auto px-4 py-2 text-center">
+                            update address
+                        </button>
+                    </div>
+                </div>}
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+}

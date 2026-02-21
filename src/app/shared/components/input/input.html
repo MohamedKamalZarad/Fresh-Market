@@ -1,0 +1,59 @@
+<label [for]="id" class="mb-2 text-lg font-semibold text-[#212529] flex justify-between align-center">
+    <ng-content></ng-content>
+    @if(control.invalid&&control.touched){
+        <i class="fa-solid  my-auto text-xs text-red-600 fa-xmark"></i>}
+        
+    @if(control.valid&&control.touched){
+    <i class="fa-solid my-auto text-xs text-green-600 fa-check"></i>}
+    </label>
+<input [formControl]="control" [type]="type" [id]="id" [class]="{
+    'border-red-500':(control.invalid&&control.touched),
+    'focus:ring-red-500':(control.invalid&&control.touched),
+    'focus:border-green-600':(control.valid),
+    'focus:ring-green-600':(control.valid)
+}" class=" border border-gray-300 text-[#212529] text-sm rounded-lg 
+ block w-full p-2.5"[placeholder]="(type==='password') ? '**********':'' "  required />
+@if(control.touched){
+
+@if (control.hasError('required')) {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+            transition-all duration-500 ease-in-out transform -translate-y-2"
+    >
+    Required
+</p>
+}
+@if (control.hasError('minlength')) {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+            transition-all duration-500 ease-in-out transform -translate-y-2"
+    >
+    Minimum length is {{ control.getError('minlength')?.requiredLength }}
+</p>
+}
+@if (control.hasError('email')) {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+            transition-all duration-500 ease-in-out transform -translate-y-2"
+    >
+    Invalid email format 
+</p>
+}
+@if (control.hasError('maxlength')) {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+        transition-all duration-500 ease-in-out transform -translate-y-2"
+    [class.opacity-100]="control.hasError('maxlength')" [class.translate-y-0]="control.hasError('maxlength')">
+    Maximum length is {{ control.getError('maxlength')?.requiredLength }}
+</p>
+}
+@if (control.hasError('pattern')) {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+            transition-all duration-500 ease-in-out transform -translate-y-2"
+    [class.opacity-100]="control.hasError('pattern')" [class.translate-y-0]="control.hasError('pattern')">
+    Invalid format
+</p>
+}
+@if (control.parent?.hasError('misMatch')&&!control.hasError('required')&&id === 'rePassword') {
+<p class="text-red-500 w-75/100 border border-red-300 mx-auto mt-6 p-5 rounded-lg text-center bg-red-200
+            transition-all duration-500 ease-in-out transform -translate-y-2">
+    Password confirmation failed
+</p>
+}
+}

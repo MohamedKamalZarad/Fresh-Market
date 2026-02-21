@@ -1,0 +1,73 @@
+    <div class="grid grid-cols-12 border-b-4 border-b-[#dee2e6]">
+        <div class="md:col-span-3 col-span-12 p-8">
+            <figure class="">
+                <img class="w-full" [src]="imageCover" alt="">
+            </figure>
+        </div>
+        <div class="md:col-span-4 col-span-12 p-5">
+            <div class="flex flex-col space-y-0.5">
+                <h4 class="text-[#0aad0a] mb-5">
+                    <span class="font-bold me-1">Order Id:</span> {{orderId}}
+                </h4>
+                <p>
+                    <span class="font-bold me-1">Order date:
+                    </span>{{ createdAt| date:'medium' }}
+                </p>
+                <p>
+                    <span class="font-bold me-1">Paid date:
+                    </span>{{ paidAt  | date:'medium'}}
+                </p>
+                <p>
+                    <span class="font-bold me-1">Payment Method:</span>{{ paymentMethodType }}
+                </p>
+                <p>
+                    <span class="font-bold me-1">Shipping city:</span>{{ city}}
+                </p>
+                <p>
+                    <span class="font-bold me-1">Shipping Address:</span>{{shippingAddress}}
+                </p>
+                <p class="mb-4">
+                    <span class="font-bold me-1">Phone:</span>{{userPhone }}
+                </p>
+                <p class="">
+                    <span class="me-1">Order Delivered:</span>
+                    @if (isDelivered) {
+                    <i class="fa-solid fa-check text-[#36ae0a]"></i>
+
+                    }
+                    @else {
+                    <i class="fa-regular fa-circle-xmark text-[#dd3545]"></i>}
+                </p>
+                <p class="mb-3">
+                    <span class="me-1">Order Paid:</span>
+                    @if (isPaid) {
+                    <i class="fa-solid fa-check text-[#36ae0a]"></i>
+
+                    }
+                    @else {
+                    <i class="fa-regular fa-circle-xmark text-[#dd3545]"></i>}
+                </p>
+                <p class="text-[#87679b]">
+                    <span class="font-bold me-1 text-sm text-[#55595c]">Order last update: </span>{{
+                    updatedAt  | date:'medium'}}
+                </p>
+
+            </div>
+        </div>
+        <div class="md:col-span-5 col-span-12 p-5">
+            <div class="mb-3 p-2.5 border border-[#dee2e6] rounded-lg ">
+                <div class="mb-4 border-b-4 border-b-[#dee2e6]">
+                    <p class="flex justify-between mb-2"><span class="text-[#28253c] font-bold">Shipping
+                            Price:</span>EGP {{shippingPrice}}</p>
+
+                    <p class="flex justify-between mb-2"><span class="text-[#28253c] font-bold">Tax Price:</span>EGP
+                        {{taxPrice}}</p>
+                </div>
+                <p class="flex justify-between mb-5"><span class="text-[#28253c] font-bold">Total Order Price:</span> EGP
+                    {{totalOrderPrice}}</p>
+            </div>
+<ng-content></ng-content>
+
+        </div>
+
+    </div>

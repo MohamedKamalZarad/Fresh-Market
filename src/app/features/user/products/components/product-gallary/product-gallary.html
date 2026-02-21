@@ -1,0 +1,18 @@
+<div id="gallery" class="relative w-full h-56 md:h-80 overflow-hidden rounded-lg">
+
+  @for (image of singleProduct.images; track image; let i = $index) {
+    <div
+      class="absolute inset-0 transition-all duration-700 ease-in-out"
+      [class.opacity-100]="i === currentIndex"
+      [class.opacity-0]="i !== currentIndex"
+      [style.transform]="getTransform(i)"
+    >
+      <img
+        [src]="image"
+        class="w-full h-full object-contain"
+      />
+    </div>
+  }
+
+
+</div>

@@ -1,0 +1,13 @@
+ .my-pagination ::ng-deep .ngx-pagination{
+    color:#0a0a0a;
+    font-weight: 900;
+    border-radius: 50%;
+    font-size: medium;
+ }
+ .my-pagination ::ng-deep .ngx-pagination .current {
+    background: var(--light-color);
+    color: var(--main-color);
+    font-weight: 900;
+    border-radius: 50%;
+    font-size: large;
+  }

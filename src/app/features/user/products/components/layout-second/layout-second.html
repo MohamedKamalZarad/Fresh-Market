@@ -1,0 +1,65 @@
+<div
+    class="grid grid-cols-12 p-3 relative transition-all duration-400 border-transparent border-4 hover:border-[#0aad0a] hover:rounded-md">
+ 
+    <div class="col-span-3 ">
+        <figure class=" group/gallary mb-3 relative border-b-[#c7c8c9]">
+            <a (click)="navigate()" class="">
+
+            <img  class="w-full group-hover/gallary: rounded-lg mb-6 relative" src={{product.imageCover}} alt="product image" />
+            </a>
+        </figure>
+        <!-- <p
+            class="group-hover:flex eye-img items-center cursor-pointer justify-center absolute top-0 hidden  bg-[#f0f3f2] hover:bg-[#0aad0a] h-10 w-10 translate-x-[-50%] translate-y-[-50%] text-main   transition-all duration-400 rounded-full hover:text-white!">
+            <i class="fa-solid fa-eye "></i>
+        </p> -->
+    </div>
+    <div class="col-span-9 flex flex-col justify-between p-4">
+        <div>
+            <h5 class="text-md mb-5 text-gray-900 font-semibold  tracking-tight">
+                {{product.category.name}}
+            </h5>
+            <h5 class="text-md mb-5 text-gray-900 font-medium tracking-tight">
+                {{product.description}}
+            </h5>
+            <h5 class="text-md mb-5 text-gray-900 font-medium  tracking-tight">
+                <span class="font-semibold"> reviews :</span> {{product.ratingsAverage}} <span> <i
+                        class="fa-solid fa-eye "></i></span>
+            </h5>
+            <h5 class="text-md mb-5 text-gray-900 font-medium  tracking-tight">
+                <span class="font-semibold">Sold : </span>{{product.sold}}<span><i
+                        class="fa-solid fa-bag-shopping "></i></span>
+            </h5>
+            <h5 class="text-md mb-5 text-gray-900 font-semibold  tracking-tight">
+                {{product.title}}
+            </h5>
+        </div>
+        <div class="flex items-end w-full ">
+            <div class="w-full">
+                <h5 class="text-sm  space-x-1 flex text-red-600 line-through tracking-tight">
+                    <span class="">EGP </span>
+                    <span class="">{{product.price}}</span>
+                </h5>
+                <div class="flex justify-between items-center w-full">
+                    <h5 class="text-md  space-x-1 flex  font-semibold tracking-tight">
+                        <span class="me-2">EGP </span>
+                        <span class="">{{product.price-(product.price*(product.offerNumber/100))| floor}}</span>
+                    </h5>
+                    <p >
+                        <i class="fas fa-star text-[#ffff00]"></i>
+                        <span>{{product.ratingsAverage}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="btn-container justify-between  py-3 grid grid-cols-12 gap-3 transition-all duration-500  ">
+    <button (click)="addToCart(product._id)"
+        class=" w-full bg-main cursor-pointer hover:bg-[#11bd11] mx-auto text-white col-span-9 px-4 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%]   transition-all duration-500 ">
+        Add to cart
+    </button>
+    <button
+        class="bg-main w-full mx-auto cursor-pointer hover:bg-[#11bd11] text-white col-span-3 px-3 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%] transition-all duration-500 ">
+        <i class="fa-regular fa-heart fa-lg"></i>
+    </button>
+</div>

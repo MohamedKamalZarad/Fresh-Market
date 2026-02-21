@@ -1,0 +1,80 @@
+<div class="md:max-w-5xl sm:max-w-[80%]  max-w-96  p-5 mx-auto  my-10  bg-[#f0f3f2] rounded-2xl">
+    <div class="md:flex ">
+        <div class="left-part p-5 md:w-1/2 ">
+            <h3 class="text-2xl mb-5 text-[#342829] font-bold">Fill your address details</h3>
+            <p class=" text-main mb-5 font-bold">Choose from your addresses:</p>
+
+
+
+            <select (change)="sendAddress($event)"
+                class="block w-full mb-5 bg-[#c0c2c2] cursor-pointer rounded-lg px-3 py-2 text-white">
+
+                <option value="" disabled selected>-- Select Address --</option>
+
+                @for (addressItem of addressList; track addressItem._id) {
+
+                <optgroup class="text-lg font-bold" [label]="(addressList.indexOf(addressItem))+1">
+
+                    <option [value]="addressItem._id">
+                        {{ addressItem.name }}
+                    </option>
+
+                    <option disabled>
+                        City: {{ addressItem.city }}
+                    </option>
+
+                    <option disabled>
+                        Details: {{ addressItem.details }}
+                    </option>
+
+                    <option disabled>
+                        Phone: {{ addressItem.phone }}
+                    </option>
+
+                </optgroup>
+                }
+            </select>
+
+            <form [formGroup]="addressForm"
+            (ngSubmit)="choosePaymentMethod()"
+            >
+
+
+                <app-input-diff-ui [control]="addressForm.get('description')" [inputId]="'description'" [lablel]="'Address Details :'"
+                    [type]="'text-area'"></app-input-diff-ui>
+                <app-input-diff-ui [control]="addressForm.get('phone')" [inputId]="'phone'" [lablel]="'Phone'"
+                    [type]="'tel'"></app-input-diff-ui>
+                <app-input-diff-ui [control]="addressForm.get('city')" [inputId]="'city'" [lablel]="'City'"
+                    [type]="'text'"></app-input-diff-ui>
+              
+                    <div class="flex justify-center mt-5">
+                          @if (payByVisa) {
+                    <button 
+                     type="submit" [disabled]="addressForm.invalid"
+                        class="disabled:bg-[#cccccc]! text-white justify-center flex   items-center bg-main box-border border border-transparent hover:bg-[#11bd11]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2  w-1/2 ">
+                        Complete Payment <img class="w-10 ms-1.5 h-10" src="/assets/dashboard/visa-1.svg"></button>
+                    }
+                        @else {
+                            <button 
+                     type="submit" [disabled]="addressForm.invalid"
+                        class="disabled:bg-[#cccccc]! text-white justify-center flex   items-center bg-main box-border border border-transparent hover:bg-[#11bd11]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2  w-1/2 ">
+                       <img class="w-10 ms-1.5 h-10" src="/assets/dashboard/9368523.png"> Confirm Payment </button>
+                    } 
+                        
+                </div>
+            </form>
+
+        </div>
+        <div class="right-part flex items-center p-5 md:w-1/2 ">
+          <router-outlet></router-outlet>
+        </div>
+
+    </div>
+    <div class="flex justify-end">
+      
+           <button 
+                     type="button" (click)="backToCart()"
+                        class=" text-white justify-center flex  items-center  bg-[#6c757d] box-border border border-transparent hover:bg-[#5c636a]! transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2  px-3.5 ">
+                        Back to cart <i class="fa-solid ms-1 fa-cart-shopping"></i></button>
+    </div>
+</div>

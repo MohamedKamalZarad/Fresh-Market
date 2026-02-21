@@ -1,0 +1,30 @@
+<div class="w-full sm:w-auto">
+  <button
+    [class]="{
+      'bg-gray-300': isINValid,
+      'disabled:cursor-not-allowed': isINValid,
+      'bg-main': isValid,
+      'cursor-pointer': isValid
+    }"
+    [class.opacity-50]="isLoading"
+    [disabled]="isINValid"
+    type="submit"
+    class="relative overflow-hidden text-white block mx-auto 
+           font-medium rounded-sm text-md transition-all duration-500 
+           w-full sm:w-auto ps-5 py-2.5 text-center"
+    [style.paddingRight]="isLoading ? '3.2rem' : '1.25rem'"
+  >
+
+
+    <span class="me-3 transition-opacity duration-300"
+          >
+      <ng-content></ng-content>
+    </span>
+
+
+    @if (isLoading) {
+      <i class="fas fa-spinner animate-spin absolute top-1/2 -translate-y-1/2 right-3"></i>
+    }
+
+  </button>
+</div>

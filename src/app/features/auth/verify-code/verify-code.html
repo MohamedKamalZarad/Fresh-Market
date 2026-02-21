@@ -1,0 +1,43 @@
+<form action="" [formGroup]="verifyCodeForm" (ngSubmit)="onclick()">
+    <div class="md:p-6">
+        <h2 class="text-[#55595c] mb-5 font-semibold text-center text-3xl">Enter your code</h2>
+        <p class="text-[#676b6d] text-center">We need to confirm that you authorized changes to your account</p>
+    </div>
+    <div class="bg-[#f8f9fa] p-5 mb-5 rounded-md">
+
+        <p class="text-[#2c3034] mb-5">
+            We've sent a text message to ***{{email}}*** with your authentication code:
+        </p>
+        <div class="flex justify-end mb-4">
+            @if(verifyCodeForm.get("resetCode")?.touched&&verifyCodeForm.get("resetCode")?.getError("required")){
+            <p class="text-red-600 "> required
+                <i class="fa-solid  my-auto text-xs text-red-600 fa-xmark"></i>
+            </p>
+            }
+            @if(verifyCodeForm.get("resetCode")?.touched&&verifyCodeForm.get("resetCode")?.getError("maxlength")
+            ||verifyCodeForm.get("resetCode")?.getError("pattern") ||
+            verifyCodeForm.get("resetCode")?.getError("minlength")){
+            <p class="text-red-600"> Reset code is invalid must be 6 numbers
+                <i class="fa-solid  my-auto text-xs text-red-600 fa-xmark"></i>
+            </p>
+            }
+            
+              @if(flag){ 
+              <p class="text-green-600"> Email is confirmed successfully!</p>}
+
+
+            @if(verifyCodeForm.get("resetCode")?.touched&&verifyCodeForm.get("resetCode")?.valid&&!flag)
+            {<i class="fa-solid my-auto text-xs text-green-600 fa-check"></i>}
+
+        </div>
+
+        <input formControlName="resetCode" type="text" id="resetCode" class=" border border-gray-300  text-sm rounded-lg 
+    block w-full p-2.5" placeholder="000000" required />
+    </div>
+    <div class="btn-container mb-2">
+        
+        <app-button [isLoading]="isLoading" [isValid]="verifyCodeForm.valid" [isINValid]="verifyCodeForm.invalid">Verify Code</app-button>
+    </div>
+    <p  class="cursor-pointer hover:underline text-center text-blue-600" (click)="forgetPassword()">send another code</p>
+
+</form>

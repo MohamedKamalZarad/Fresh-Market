@@ -1,0 +1,45 @@
+
+<div (click)="navigate()"
+    class="w-full  mb-5 group-hover:border-[#0aad0a] transition-all ease-out duration-400 border-transparent border-4 hover:border-4 rounded-md  p-4 ">
+    <figure  class="  mb-3 relative border-b border-b-[#c7c8c9]">
+  <a class="">
+            <img class="w-full  rounded-lg mb-6 relative" src={{wishlistItem.imageCover}} alt="wishlistItem image" />
+
+        </a>  
+    </figure>
+    <div>
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold  tracking-tight">
+            {{wishlistItem.category.name}}
+        </h5>
+
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold line-clamp-1 tracking-tight">
+            {{wishlistItem.title.split(" ",2).join(" ")}}
+        </h5>
+
+        <div class="flex justify-between items-center">
+            <h5 class="text-md space-x-1 flex text-gray-900 font-semibold tracking-tight">
+                <span class="">EGP </span>
+                <span>{{ wishlistItem.price }}</span>
+            </h5>
+
+            <h5 class="flex space-x-1 items-center"><i class="fas fa-star text-[#ffff00]"></i>
+                <span>{{wishlistItem.ratingsAverage}}</span>
+            </h5>
+        </div>
+    </div>
+</div>
+<div class="btn-container  justify-between  py-3 grid grid-cols-12 gap-3 transition-all duration-500  ">
+    <button (click)="addToCart(wishlistItem._id)"
+        class=" w-full bg-main cursor-pointer hover:bg-[#11bd11] mx-auto text-white col-span-9 px-4 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%]   transition-all duration-500 ">
+        Add to cart
+    </button>
+    <button (click)="deleteAnItemFromWishlist()"
+        class="group  bg-[#dc3545] w-full mx-auto cursor-pointer hover:bg-[#bb2d3b] text-white col-span-3 px-3 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%] transition-all duration-500 ">
+        <i class="fa-solid fa-lg fa-trash "></i>
+    </button>
+</div>
+
+
+

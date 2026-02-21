@@ -1,0 +1,58 @@
+<div class="md:max-w-6xl sm:max-w-[80%] mt-20 mx-auto">
+  <div class="md:grid grid-cols-12 ">
+    <div class="col-span-4 p-4 ">
+      <div class="modal p-8  shadow-xl relative rounded-2xl">
+            <button (click)="addToWishList()"
+        class="absolute top-0 left-0  mx-auto cursor-pointer bg-[#0aad0a] hover:bg-[#11bd11]  text-white col-span-3 px-2.5 py-2.5 rounded-md translate-y-[50%] translate-x-[50%]  transition-all duration-500 ">
+        <i 
+         class="fa-regular fa-heart fa-lg "></i>
+    </button>
+        <figure class="main-image mb-5">
+          <img [src]="mainImg" class="w-full h-auto object-cover rounded-lg transition-all duration-700 ease-in"
+            alt="Main product image">
+        </figure>
+
+        <!-- Thumbnails -->
+        <ul class="flex justify-center space-x-2 items-center">
+          @for (image of images; track $index) {
+          <li class="cursor-pointer w-30 h-30">
+            <img [src]="image" (click)="swapImgs($index)"
+              class="w-full h-full object-cover border-transparent hover:border-[#0aad0a]  border-4 transition-all duration-700 ease-out"
+              alt="Thumbnail">
+          </li>
+          }
+        </ul>
+
+
+      </div>
+
+    </div>
+    <div class="col-span-8 p-4  ">
+      <div class="content  p-8 ">
+        <p class=" font-semibold text-[#212529] mb-3">{{product.description}}</p>
+        <p class=" font-semibold text-2xl text-[#212529] mb-5">{{product.title}}</p>
+ <p class="mb-5"><span class="font-semibold text-[#212529]">Available in Stock :</span>  {{product.quantity}}</p>
+ <p class="mb-5"><span class="font-semibold text-[#212529]">reviews : </span> <span> {{product.ratingsAverage}} </span><i class="fas fa-star text-[#ffc908]"></i></p>
+ <p class="mb-5"><span class="font-semibold text-[#212529]">Sold : </span> <span> {{product.sold}} </span><i class="fa-solid fa-bag-shopping"></i></p>
+ <p class="mb-5"><span class="font-semibold text-[#212529]">Total Views : </span> <span> {{product.sold}} </span><i class="fa-solid fa-eye"></i></p>
+    <p class="font-semibold text-[#212529] mb-2">{{product.brand.name}}</p>
+    <figure (click)="navigate(product.brand._id)"
+     class=" border-b border-[#c7c8c9] pb-3 mb-3">
+      <img class="border-transparent border-4 rounded-lg duration-700 ease-out cursor-pointer hover:border-[#0aad0a]" [src]="product.brand.image"  alt="">
+    </figure>
+    <p class="font-semibold text-[#212529] mb-3">{{product.category.name}}</p>
+    <div class="flex justify-between items-center">
+      <p class="text-2xl">{{product.price}} EGP</p>
+      <p><i class="fas fa-star text-[#ffc908]"></i>{{product.ratingsAverage}}</p>
+    </div>
+    <div class="  py-3  transition-all duration-500  ">
+    <button (click)="addToCart(product._id)"
+        class=" w-full bg-main cursor-pointer hover:bg-[#11bd11]! mx-auto text-white  px-4 py-2.5 rounded-md    transition-all duration-500 ">
+        Add to cart
+    </button>
+  
+</div>
+</div>
+    </div>
+  </div>
+</div>

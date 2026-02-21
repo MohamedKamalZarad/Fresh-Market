@@ -1,0 +1,33 @@
+<section class="md:max-w-6xl  sm:max-w-[80%]  max-w-96 mx-auto  bg-[#f0f3f2] rounded-lg p-6 mt-14 mb-6">
+    <div class="md:flex md:space-x-6 ">
+        <div class="md:mb-0 mb-5 left-part md:w-1/4 flex flex-col gap-2 ">
+            <h4 class="">
+                <button type="button"
+                routerLink="/settings/Account-Settings"  routerLinkActive="hover:bg-[#11bd11]! bg-main"
+                    class="text-white justify-center flex w-full items-center  box-border border border-transparent bg-[#6c757d] hover:bg-[#565e64] transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2">
+                    Account Settings</button>
+
+
+            </h4>
+            <h4>
+                <button type="button" [routerLink]="'Privacy-Settings'" routerLinkActive="hover:bg-[#11bd11]! bg-main"
+                    class="text-white justify-center flex w-full mx-auto items-center  box-border border border-transparent bg-[#6c757d] hover:bg-[#565e64] transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2   ">
+                    Privacy Settings</button>
+            </h4>
+            <h4>
+                <button type="button" [routerLink]="'Address-Settings'" routerLinkActive="hover:bg-[#11bd11]! bg-main"
+                    class="text-white justify-center flex w-full mx-auto items-center  box-border border border-transparent bg-[#6c757d] hover:bg-[#565e64] transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2   ">
+                    Address Settings</button>
+
+            </h4>
+
+
+        </div>
+        <div class="right-part md:grow ">
+            
+<router-outlet></router-outlet>
+        </div>
+    </div>
+</section>
+
+  

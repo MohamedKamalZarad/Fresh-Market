@@ -1,0 +1,43 @@
+<div class="md:max-w-6xl  sm:max-w-[80%]   mx-auto my-6 p-6 bg-[#f0f3f2] rounded-lg">
+
+    @for (orderItem of orderData; track orderItem._id) {
+    @for (orderProduct of orderItem.cartItems; track orderProduct._id ) {
+
+<!-- orderProduct.product.imageCover
+orderItem.id
+orderItem.paymentMethodType
+orderItem.shippingAddress.city
+ orderItem.shippingAddress
+orderItem.user.phone
+orderItem.isDelivered
+orderItem.isPaid
+orderItem.createdAt
+orderItem.paidAt
+orderItem.updatedAt
+orderItem.shippingPrice
+orderItem.taxPrice
+orderItem.totalOrderPrice -->
+<app-order-item
+[orderId]="orderItem.id"
+[imageCover]="orderProduct.product.imageCover"
+[paymentMethodType]="orderItem.paymentMethodType"
+[city]="orderItem.shippingAddress.city"
+[shippingAddress]="orderItem.shippingAddress.details"
+[userPhone]="orderItem.user.phone"
+[isDelivered]="orderItem.isDelivered"
+[isPaid]="orderItem.isPaid"
+[createdAt]="orderItem.createdAt"
+[paidAt]="orderItem.paidAt"
+[updatedAt]="orderItem.updatedAt"
+[shippingPrice]="orderItem.shippingPrice"
+[taxPrice]="orderItem.taxPrice"
+[totalOrderPrice]="orderItem.totalOrderPrice"
+>
+    <div class="text-end"><a
+                (click)="navigateToOrderDetails(orderItem._id)"
+                class="underline cursor-pointer">Order Details</a></div>
+</app-order-item>
+
+    } }
+
+</div>

@@ -1,0 +1,26 @@
+<section class="md:max-w-4xl sm:max-w-[80%]  max-w-96 mx-auto">
+    <div class="flex ">
+        <form [formGroup]="updatePasswordForm"  (ngSubmit)="updateInfo()"
+      
+        class=" w-[80%] mx-auto col-span-9" >
+            <div class="flex justify-between items-center mb-5 border-b-2 pb-5 border-[#dee2e6]">
+                <h2 class="text-xl font-bold text-[#212529]">Change Password :</h2>
+                <button type="submit" [class.bg-main]="!isEditable" [class.hover:bg-[#11bd11]!]="!isEditable"
+                    [class.bg-[#6c757d]]="isEditable" [class.hover:bg-[#565e64]]="isEditable"
+                    class="text-white justify-center bg-main text-lg flex px-5 items-center  box-border border border-transparent  transition-all duration-300  rounded-md cursor-pointer shadow-xs font-medium rounded-base py-2">
+                    {{ (isEditable) ? "Update":"Edit" }}</button>
+            </div>
+            <div>
+                <app-input [type]="'password'" [id]="'base-input'" [control]="updatePasswordForm.get('currentPassword') "><span class="text-sm text-[#343f36] font-medium">Current Password:</span></app-input>
+            </div>
+            <div>
+                <app-input [type]="'password'" [id]="'password'" [control]="updatePasswordForm.get('password') "><span class="text-sm text-[#343f36] font-medium">New Password:</span></app-input>
+            </div>
+            <div>
+                <app-input [type]="'password'" [id]="'rePassword'" [control]="updatePasswordForm.get('rePassword') "><span class="text-sm text-[#343f36] font-medium">Re Password:</span></app-input>
+            </div>
+
+        </form>
+    </div>
+
+</section>

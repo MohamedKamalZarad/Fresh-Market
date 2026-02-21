@@ -1,0 +1,65 @@
+<div (click)="navigate()"
+    class="w-full  mb-5 group-hover:border-[#0aad0a] transition-all ease-out duration-400 border-transparent border-4 hover:border-4 rounded-md  p-4 ">
+    <figure class="  mb-3 relative border-b border-b-[#c7c8c9]">
+
+        <a class="">
+            <img class="w-full  rounded-lg mb-6 relative" src={{product.imageCover}} alt="product image" />
+
+        </a>
+
+
+
+    </figure>
+    <div>
+
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold  tracking-tight">
+            {{product.category.name}}
+        </h5>
+
+
+        <h5 class="text-md mb-7 text-gray-900 font-semibold line-clamp-1 tracking-tight">
+            {{product.title.split(" ",2).join(" ")}}
+        </h5>
+        <h5 class="text-xs space-x-1 flex text-red-600 line-through tracking-tight">
+            <span class="">EGP </span>
+            <span class="">{{product.price }}</span>
+        </h5>
+        <div class="flex justify-between items-center">
+
+
+
+            <h5 class="text-md space-x-1 flex text-gray-900 font-semibold tracking-tight">
+                <span class="">EGP </span>
+                <span>{{ (product.price - (product.price * (product.offerNumber / 100))) | floor }}</span>
+            </h5>
+
+
+
+
+            <h5 class="flex space-x-1 items-center"><i class="fas fa-star text-[#ffff00]"></i>
+                <span>{{product.ratingsAverage}}</span>
+            </h5>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="btn-container  justify-between  py-3 grid grid-cols-12 gap-3 transition-all duration-500  ">
+    <button (click)="addToCart(product._id)"
+        class=" w-full bg-main cursor-pointer hover:bg-[#11bd11] mx-auto text-white col-span-9 px-4 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%]   transition-all duration-500 ">
+        Add to cart
+    </button>
+    <button (click)="!userWishListIds.has(product._id)?addToWishList():deleteAnItemFromWishlist()" 
+    [class.bg-[#dc3545]]="userWishListIds.has(product._id)"
+
+    [class.bg-main]="!userWishListIds.has(product._id)"
+
+    [class.hover:bg-[#11bd11]]="!userWishListIds.has(product._id)"
+        class=" w-full mx-auto cursor-pointer hover:bg-[#11bd11] text-white col-span-3 px-3 py-2.5 rounded-md group-hover/card:translate-y-0 translate-y-[400%] transition-all duration-500 ">
+        <i  [class.fa-regular]="!userWishListIds.has(product._id)"
+            [class.fa-solid]="userWishListIds.has(product._id)"
+         class=" fa-heart fa-lg" ></i>
+    </button>
+</div>
